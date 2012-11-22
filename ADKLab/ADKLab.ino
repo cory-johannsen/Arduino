@@ -24,7 +24,7 @@ void loop()
   char buffer[BUFFER_SIZE];
   
   if (androidAccessory.isConnected()) {
-    if (accessoryConnected = false) {
+    if (!accessoryConnected) {
       Serial.println("Android accessory connected. ");
       accessoryConnected = true;
     }
@@ -45,7 +45,9 @@ void loop()
     }
   }
   else {
-    Serial.println("Android accessory disconnected. ");
+    if (accessoryConnected) {
+      Serial.println("Android accessory disconnected. ");
+    }
     accessoryConnected = false;
   }
 
